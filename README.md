@@ -42,6 +42,40 @@ A Django learning resources portal demonstrating routing, views, templates, form
 - `/feedback/` — Feedback form
 - `/feedback/thanks/` — Successful submission
 
+## Screenshots
+
+### Home
+![StudyHub Home](screenshots/01-home.png)
+
+### Resource List
+![Resource List](screenshots/02-resource-list.png)
+
+### Resource Details
+![Resource Details](screenshots/03-resource-detail.png)
+
+### Favorites
+![Favorites](screenshots/04-favorites.png)
+
+### Theme Preferences
+![Theme Preferences](screenshots/05-preferences.png)
+
+<details>
+<summary>More screenshots</summary>
+
+### Light Theme
+![Light Theme](screenshots/06-light-theme.png)
+
+### Dark Theme
+![Dark Theme](screenshots/07-dark-theme.png)
+
+### Feedback Validation
+![Feedback Validation](screenshots/08-feedback-errors.png)
+
+### Feedback Success
+![Feedback Success](screenshots/09-feedback-success.png)
+
+</details>
+
 ## Technologies
 
 - Python
@@ -49,7 +83,7 @@ A Django learning resources portal demonstrating routing, views, templates, form
 - HTML5
 - CSS3
 - Django Templates
-- SQLite for Django's built-in session system
+- SQLite — used as the project's database and for database-backed sessions
 
 ## Project Structure
 
@@ -75,10 +109,13 @@ studyhub-django/
 │   ├── asgi.py
 │   └── wsgi.py
 ├── manage.py
+├── requirements.txt
 └── README.md
 ```
 
 ## Running Locally
+
+Create and activate a virtual environment:
 
 ```bash
 python -m venv .venv
@@ -90,10 +127,10 @@ Windows PowerShell:
 .venv\Scripts\Activate.ps1
 ```
 
-Install Django:
+Install dependencies:
 
 ```bash
-pip install django
+pip install -r requirements.txt
 ```
 
 Apply migrations and run:
@@ -102,6 +139,14 @@ Apply migrations and run:
 python manage.py migrate
 python manage.py runserver
 ```
+
+For a local development environment, Django runs with debug mode enabled by setting:
+
+```text
+DJANGO_DEBUG=True
+```
+
+For a deployed environment, use a strong `DJANGO_SECRET_KEY`, set `DJANGO_DEBUG=False`, and configure `DJANGO_ALLOWED_HOSTS`.
 
 ## Current Limitations
 
