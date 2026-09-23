@@ -1,0 +1,28 @@
+.theme-dark {
+    --bg: #0b1120;
+    --text: #e5e7eb;
+    --muted: #94a3b8;
+    --link: #93c5fd;
+    --header-from: #0f172a;
+    --header-to: #312e81;
+    --header-text: #f8fafc;
+    --card-bg: #131c31;
+    --border: #26324d;
+    --shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+    --shadow-hover: 0 20px 40px rgba(99, 102, 241, 0.38);
+    --accent: #3b82f6;
+    --accent-2: #8b5cf6;
+    --button-text: #ffffff;
+    --secondary-bg: #1e293b;
+    --secondary-text: #c7d2fe;
+    --danger-bg: #e11d48;
+    --favorite: #fbbf24;
+    --input-bg: #0b1120;
+    --error: #fca5a5;
+    --focus: rgba(59, 130, 246, 0.35);
+    --hero-from: #1d4ed8;
+    --hero-to: #6d28d9;
+    --hero-accent: #be185d;
+    --footer-bg: #020617;
+    --footer-text: #cbd5e1;
+}
