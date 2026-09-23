@@ -12,4 +12,4 @@ COPY . .
 
 RUN python manage.py collectstatic --noinput
 
-CMD ["sh", "-c", "python manage.py migrate && gunicorn studyhub_project.wsgi:application --bind 0.0.0.0:$PORT"]
+CMD ["gunicorn", "studyhub_project.wsgi:application", "--bind", "0.0.0.0:8080"]
