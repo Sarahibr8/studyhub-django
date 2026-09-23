@@ -2,6 +2,10 @@
 
 A Django learning resources portal demonstrating routing, views, templates, forms, sessions, cookies, validation, redirects, custom 404 handling, and responsive UI.
 
+## Live Demo
+
+🌐 [StudyHub Live Demo](https://studyhub-production-6f03.up.railway.app)
+
 ## Features
 
 - Browse learning resources
