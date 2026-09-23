@@ -1,0 +1,28 @@
+.theme-light {
+    --bg: #f4f6fb;
+    --text: #0f172a;
+    --muted: #64748b;
+    --link: #2563eb;
+    --header-from: #1e3a8a;
+    --header-to: #6d28d9;
+    --header-text: #ffffff;
+    --card-bg: #ffffff;
+    --border: #e2e8f0;
+    --shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
+    --shadow-hover: 0 20px 40px rgba(37, 99, 235, 0.28);
+    --accent: #2563eb;
+    --accent-2: #7c3aed;
+    --button-text: #ffffff;
+    --secondary-bg: #eef2ff;
+    --secondary-text: #3730a3;
+    --danger-bg: #e11d48;
+    --favorite: #d97706;
+    --input-bg: #ffffff;
+    --error: #dc2626;
+    --focus: rgba(37, 99, 235, 0.25);
+    --hero-from: #2563eb;
+    --hero-to: #7c3aed;
+    --hero-accent: #ec4899;
+    --footer-bg: #0f172a;
+    --footer-text: #e2e8f0;
+}
