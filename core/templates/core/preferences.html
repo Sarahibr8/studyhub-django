@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Preferences | StudyHub{% endblock %}
+{% block content %}
+<section class="card">
+<h1>Preferences</h1><p>Current theme: <strong>{{ theme|capfirst }}</strong></p>
+<form method="post" action="{% url 'preferences' %}">
+{% csrf_token %}
+<div class="theme-options">
+{% for option in themes %}
+<label class="theme-option">
+<input type="radio" name="theme" value="{{ option }}" {% if option == theme %}checked{% endif %}>
+<span class="theme-card theme-preview-{{ option }}"><span class="preview-bar"></span><span class="preview-body"></span><strong>{% if option == 'dark' %}🌙{% else %}☀️{% endif %} {{ option|capfirst }}</strong></span>
+</label>
+{% endfor %}
+</div>
+<button type="submit" class="button">Save Theme</button>
+</form>
+</section>
+{% endblock %}
