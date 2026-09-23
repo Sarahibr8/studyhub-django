@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}StudyHub{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% if theme == 'dark' %}
+        <link rel="stylesheet" href="{% static 'css/dark.css' %}">
+    {% else %}
+        <link rel="stylesheet" href="{% static 'css/light.css' %}">
+    {% endif %}
+</head>
+<body class="theme-{% if theme == 'dark' %}dark{% else %}light{% endif %}">
+<header class="site-header">
+    <a class="brand" href="{% url 'home' %}">
+        <img src="{% static 'images/logo.png' %}" alt="StudyHub logo" class="logo">
+        <span>StudyHub</span>
+    </a>
+    {% with current=request.resolver_match.url_name %}
+    <nav class="site-nav">
+        <a href="{% url 'home' %}" {% if current == 'home' %}class="active"{% endif %}>Home</a>
+        <a href="{% url 'resource_list' %}" {% if current == 'resource_list' or current == 'resource_detail' %}class="active"{% endif %}>Resources</a>
+        <a href="{% url 'favorites' %}" {% if current == 'favorites' %}class="active"{% endif %}>Favorites</a>
+        <a href="{% url 'preferences' %}" {% if current == 'preferences' %}class="active"{% endif %}>Preferences</a>
+        <a href="{% url 'feedback' %}" {% if current == 'feedback' or current == 'feedback_thanks' %}class="active"{% endif %}>Feedback</a>
+    </nav>
+    {% endwith %}
+</header>
+<main class="container">
+    {% block content %}{% endblock %}
+</main>
+<footer class="site-footer">
+    <p>StudyHub — Learning Resources Portal · Django Project</p>
+</footer>
+</body>
+</html>
