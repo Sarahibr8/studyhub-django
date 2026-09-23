@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Favorites | StudyHub{% endblock %}
+{% block content %}
+<h1 class="page-title">My Favorites</h1>
+{% if favorite_resources %}
+<div class="grid">
+{% for resource in favorite_resources %}
+{% with rid=resource.id|stringformat:"d" %}
+<article class="card resource-card" style="--i: {{ forloop.counter0 }}">
+<a class="card-media" href="{% url 'resource_detail' resource.id %}">
+<img src="{% static 'images/resource_'|add:rid|add:'.jpg' %}" alt="{{ resource.title }}" loading="lazy">
+<span class="badge badge-{{ resource.type|slugify }}">{{ resource.type }}</span>
+</a>
+<div class="card-body">
+<h2>{{ resource.title }}</h2><p>{{ resource.description }}</p>
+<div class="card-actions">
+<a class="button" href="{% url 'resource_detail' resource.id %}">View Details</a>
+<form method="post" action="{% url 'favorites' %}">
+{% csrf_token %}<input type="hidden" name="action" value="remove"><input type="hidden" name="resource_id" value="{{ resource.id }}">
+<button type="submit" class="button danger">Remove</button>
+</form>
+</div>
+</div>
+</article>
+{% endwith %}
+{% endfor %}
+</div>
+{% else %}
+<section class="card center-card"><span class="big-emoji">⭐</span><h2>You have no favorites yet</h2><p>Tap "Add to Favorites" on any resource and it will show up here.</p><p><a class="button" href="{% url 'resource_list' %}">Browse Resources</a></p></section>
+{% endif %}
+{% endblock %}
