@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}Thank You | StudyHub{% endblock %}
+{% block content %}
+<section class="card center-card">
+<div class="success-check"><svg viewBox="0 0 52 52" aria-hidden="true"><circle class="check-circle" cx="26" cy="26" r="24" fill="none"/><path class="check-mark" d="M14 27l8 8 16-17" fill="none"/></svg></div>
+<h1>Thank You!</h1>
+{% if name %}<p>Thanks, {{ name }}. Your feedback was submitted successfully.</p>{% else %}<p>Your feedback was submitted successfully.</p>{% endif %}
+<p><a class="button" href="{% url 'home' %}">Back to Home</a></p>
+</section>
+{% endblock %}
