@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home | StudyHub{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <span class="hero-tag">📚 Learning Resources Portal</span>
+        <h1>Welcome to StudyHub</h1>
+        <p>StudyHub is a simple learning-resources portal. Discover articles, videos, and links, and keep your favorites close.</p>
+        <p class="button-row">
+            <a class="button light" href="{% url 'resource_list' %}">Browse Resources →</a>
+            <a class="button ghost" href="{% url 'favorites' %}">⭐ My Favorites</a>
+        </p>
+    </div>
+    <div class="hero-art">
+        <img src="{% static 'images/sample_resource.jpg' %}" alt="StudyHub preview" class="hero-image">
+    </div>
+</section>
+<section class="features">
+    <a class="feature" style="--i: 0" href="{% url 'resource_list' %}"><span class="icon">📚</span><h3>Browse</h3><p>Articles, videos, and external links.</p></a>
+    <a class="feature" style="--i: 1" href="{% url 'resource_detail' 1 %}"><span class="icon">🔎</span><h3>Explore</h3><p>Open a detail page for any resource.</p></a>
+    <a class="feature" style="--i: 2" href="{% url 'favorites' %}"><span class="icon">⭐</span><h3>Save</h3><p>Keep your favorite resources.</p></a>
+    <a class="feature" style="--i: 3" href="{% url 'preferences' %}"><span class="icon">🌙</span><h3>Personalize</h3><p>Switch between light and dark themes.</p></a>
+    <a class="feature" style="--i: 4" href="{% url 'feedback' %}"><span class="icon">💬</span><h3>Share</h3><p>Send us your feedback.</p></a>
+</section>
+{% endblock %}
