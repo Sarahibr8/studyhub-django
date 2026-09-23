@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ resource.title }} | StudyHub{% endblock %}
+
+{% block content %}
+{% with rid=resource.id|stringformat:"d" %}
+<article class="card detail">
+    <div class="detail-media">
+        <img src="{% static 'images/resource_'|add:rid|add:'.jpg' %}" alt="{{ resource.title }}">
+    </div>
+    <div class="detail-info">
+        <span class="badge badge-{{ resource.type|slugify }}">{{ resource.type }}</span>
+        <h1>{{ resource.title }}</h1>
+        <div class="tabs">
+            <a href="{% url 'resource_detail' resource.id %}?tab=overview" class="tab {% if tab == 'overview' %}active{% endif %}">Overview</a>
+            <a href="{% url 'resource_detail' resource.id %}?tab=details" class="tab {% if tab == 'details' %}active{% endif %}">Details</a>
+        </div>
+        <div class="tab-content">
+            {% if tab == 'details' %}
+            <ul>
+                <li><strong>ID:</strong> {{ resource.id }}</li>
+                <li><strong>Type:</strong> {{ resource.type }}</li>
+                <li><strong>Link:</strong> <a href="{{ resource.url }}" target="_blank" rel="noopener">{{ resource.url }}</a></li>
+            </ul>
+            {% else %}
+            <p>{{ resource.description }}</p>
+            {% endif %}
+        </div>
+        <div class="card-actions">
+            {% if is_favorite %}
+                <p class="favorite-note">⭐ This resource is in your favorites.</p>
+            {% else %}
+            <form method="post" action="{% url 'favorites' %}">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add">
+                <input type="hidden" name="resource_id" value="{{ resource.id }}">
+                <button type="submit" class="button">☆ Add to Favorites</button>
+            </form>
+            {% endif %}
+            <a class="button secondary" href="{% url 'resource_list' %}">← Back to Resources</a>
+        </div>
+    </div>
+</article>
+{% endwith %}
+{% endblock %}
