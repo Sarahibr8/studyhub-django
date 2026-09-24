@@ -2,6 +2,7 @@ FROM python:3.13-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV PORT=8080
 
 WORKDIR /app
 
@@ -12,4 +13,4 @@ COPY . .
 
 RUN python manage.py collectstatic --noinput
 
-CMD ["gunicorn", "studyhub_project.wsgi:application", "--bind", "0.0.0.0:8080"]
+CMD ["sh", "-c", "exec gunicorn studyhub_project.wsgi:application --bind 0.0.0.0:${PORT:-8080}"]
