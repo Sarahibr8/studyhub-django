@@ -10,5 +10,4 @@ urlpatterns = [
     path("preferences/", views.preferences, name="preferences"),
     path("feedback/", views.feedback, name="feedback"),
     path("feedback/thanks/", views.feedback_thanks, name="feedback_thanks"),
-    path("<path:invalid_path>/", views.custom_404),
 ]
