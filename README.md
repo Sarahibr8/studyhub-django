@@ -1,32 +1,39 @@
 # StudyHub
 
-A Django learning resources portal demonstrating routing, views, templates, forms, sessions, cookies, validation, redirects, custom 404 handling, and responsive UI.
+A Django learning resources portal built to demonstrate practical backend development with Django, including routing, views, templates, forms, sessions, cookies, authentication, validation, and responsive UI.
 
 ## Live Demo
 
-🌐 [StudyHub Live Demo](https://studyhub-production-6f03.up.railway.app)
+🌐 **[StudyHub Live Demo](https://studyhub-production-6f03.up.railway.app)**
 
-## Features
+## Highlights
 
-- Django URL routing and view functions
-- Template inheritance with a shared base template
-- Django Forms with validation and error handling
+- Django URL routing and function-based views
+- Reusable templates with template inheritance
+- Django Forms with server-side validation
+- User authentication with Sign Up, Login, and Logout
+- Login-protected Favorites, Preferences, and Feedback
 - Session-based favorites
 - Cookie-based light/dark theme preferences
-- Custom 404 page
-- Django authentication with Sign Up, Login, and Logout
-- Login-protected favorites, preferences, and feedback
-- Responsive UI with reusable CSS
-
-- Browse learning resources
-- View resource details with query parameters
-- Add and remove favorites using Django sessions
-- Light and dark theme preferences using cookies
-- Feedback form with server-side validation
-- Post/Redirect/Get after successful feedback
+- CSRF-protected POST forms
 - Custom 404 page
 - Responsive UI with CSS Grid and Flexbox
-- CSS transitions and animations
+- WhiteNoise static-file serving for deployment
+- Automated Django tests
+- Railway deployment with Docker
+
+## Preview
+
+<table>
+  <tr>
+    <td><img src=".github/assets/01-home.png" alt="StudyHub Home" width="100%"></td>
+    <td><img src=".github/assets/02-resource-list.png" alt="StudyHub Resource List" width="100%"></td>
+  </tr>
+  <tr>
+    <td><img src=".github/assets/03-resource-detail.png" alt="StudyHub Resource Details" width="100%"></td>
+    <td><img src=".github/assets/07-dark-theme.png" alt="StudyHub Dark Theme" width="100%"></td>
+  </tr>
+</table>
 
 ## Django Concepts
 
@@ -42,6 +49,8 @@ A Django learning resources portal demonstrating routing, views, templates, form
 | Sessions | Favorites and temporary feedback data |
 | Forms | `FeedbackForm` |
 | Validation | Built-in and custom validation |
+| Authentication | Django user authentication |
+| Access Control | Login-required views |
 | Redirects | Post/Redirect/Get |
 | CSRF | Protected POST forms |
 | Error Handling | Custom 404 page |
@@ -51,62 +60,59 @@ A Django learning resources portal demonstrating routing, views, templates, form
 - `/` — Home
 - `/resources/` — Resource list
 - `/resources/<int:id>/` — Resource details
+- `/signup/` — Create an account
+- `/login/` — Login
+- `/logout/` — Logout
 - `/favorites/` — Favorites
 - `/preferences/` — Theme preferences
 - `/feedback/` — Feedback form
 - `/feedback/thanks/` — Successful submission
 
-## Screenshots
-
-### Home
-![StudyHub Home](screenshots/01-home.png)
-
-### Resource List
-![Resource List](screenshots/02-resource-list.png)
-
-### Resource Details
-![Resource Details](screenshots/03-resource-detail.png)
-
-### Favorites
-![Favorites](screenshots/04-favorites.png)
-
-### Theme Preferences
-![Theme Preferences](screenshots/05-preferences.png)
-
-<details>
-<summary>More screenshots</summary>
-
-### Light Theme
-![Light Theme](screenshots/06-light-theme.png)
-
-### Dark Theme
-![Dark Theme](screenshots/07-dark-theme.png)
-
-### Feedback Validation
-![Feedback Validation](screenshots/08-feedback-errors.png)
-
-### Feedback Success
-![Feedback Success](screenshots/09-feedback-success.png)
-
-</details>
-
 ## Technologies
 
 - Python
 - Django
-- HTML5
-- CSS3
+- HTML
+- CSS
 - Django Templates
-- SQLite — used as the project's database and for database-backed sessions
+- SQLite — used for database-backed authentication and sessions
+- WhiteNoise
+- Gunicorn
+- Docker
+- Railway
+
+## Testing
+
+The project includes automated tests covering:
+
+- Public page rendering
+- Resource details and custom 404 handling
+- Favorites add/remove behavior
+- Theme preference changes
+- Feedback validation and redirect flow
+- User registration and login
+- Login protection for private pages
+
+Tests run automatically during the Docker image build.
+
+Run them locally with:
+
+```bash
+python manage.py test
+```
 
 ## Project Structure
 
 ```text
 studyhub-django/
+├── .github/
+│   └── assets/
 ├── core/
 │   ├── templates/core/
+│   ├── templates/registration/
 │   ├── apps.py
 │   ├── forms.py
+│   ├── tests.py
 │   ├── urls.py
 │   └── views.py
 ├── static/
@@ -115,13 +121,13 @@ studyhub-django/
 ├── templates/
 │   ├── 404.html
 │   └── base.html
-├── screenshots/
 ├── media/
 ├── studyhub_project/
 │   ├── settings.py
 │   ├── urls.py
 │   ├── asgi.py
 │   └── wsgi.py
+├── Dockerfile
 ├── manage.py
 ├── requirements.txt
 └── README.md
@@ -138,7 +144,7 @@ python -m venv .venv
 Windows PowerShell:
 
 ```powershell
-.venv\Scripts\Activate.ps1
+.venv\\Scripts\\Activate.ps1
 ```
 
 Install dependencies:
@@ -154,35 +160,33 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-For a local development environment, Django runs with debug mode enabled by setting:
+For local development, set:
 
 ```text
 DJANGO_DEBUG=True
 ```
 
-For a deployed environment, use a strong `DJANGO_SECRET_KEY`, set `DJANGO_DEBUG=False`, and configure `DJANGO_ALLOWED_HOSTS`.
+For deployment, use a strong `DJANGO_SECRET_KEY`, set `DJANGO_DEBUG=False`, and configure `DJANGO_ALLOWED_HOSTS`.
 
 ## Current Limitations
 
 - Resources are currently predefined Python data rather than database models.
-- Favorites are session-based rather than linked to user accounts.
+- Favorites are session-based rather than permanently linked to user accounts.
 - Feedback is validated but not stored permanently.
 - Theme preferences are stored in a browser cookie.
 
 ## Future Development
 
-- Add database models for resources
-- Add authentication and user accounts
+- Add database models for learning resources
 - Persist favorites per user
 - Store feedback submissions
 - Add search and filtering
-- Add automated tests
-- Prepare the project for deployment
+- Expand the authentication flow with password reset
 - Continue improving accessibility and responsive behavior
 
 ## Author
 
 **Sarah Alsubaie**
 
-GitHub: https://github.com/Sarahibr8  
-LinkedIn: https://www.linkedin.com/in/sarah-alsubaie-a41199217/
+- GitHub: https://github.com/Sarahibr8
+- LinkedIn: https://www.linkedin.com/in/sarah-alsubaie-a41199217/
