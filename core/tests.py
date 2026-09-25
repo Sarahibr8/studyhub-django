@@ -3,6 +3,10 @@ from django.test import TestCase
 
 
 class StudyHubTests(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="SafePassword123!")
+        self.client.login(username="testuser", password="SafePassword123!")
+
     def test_home_and_resources_pages(self):
         self.assertEqual(self.client.get("/").status_code, 200)
         self.assertEqual(self.client.get("/resources/").status_code, 200)
@@ -44,6 +48,7 @@ class StudyHubTests(TestCase):
 
 
     def test_signup_and_login(self):
+        self.client.post("/logout/")
         response = self.client.post(
             "/signup/",
             {"username": "sarah", "password1": "SafePassword123!", "password2": "SafePassword123!"},
@@ -60,6 +65,7 @@ class StudyHubTests(TestCase):
         self.assertContains(self.client.get("/"), "Hi, sarah")
 
     def test_protected_pages_require_login(self):
+        self.client.post("/logout/")
         for url in ("/favorites/", "/preferences/", "/feedback/"):
             response = self.client.get(url)
             self.assertRedirects(response, f"/login/?next={url}")
