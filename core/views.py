@@ -3,7 +3,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import logout
 from django.http import Http404
-from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect, render
 
 from .forms import FeedbackForm
