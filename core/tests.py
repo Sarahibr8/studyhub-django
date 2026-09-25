@@ -63,7 +63,8 @@ class StudyHubTests(TestCase):
                 "rating": "5",
             },
         )
-        self.assertRedirects(valid, "/feedback/thanks/")
+        self.assertEqual(valid.status_code, 302)
+        self.assertEqual(valid.url, "/feedback/thanks/")
 
         thanks = self.client.get("/feedback/thanks/")
         self.assertContains(thanks, "Thanks, Sarah.")
