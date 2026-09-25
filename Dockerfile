@@ -12,5 +12,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 RUN python manage.py collectstatic --noinput
+RUN python manage.py test
 
 CMD ["sh", "-c", "exec gunicorn studyhub_project.wsgi:application --bind 0.0.0.0:${PORT:-8080}"]
