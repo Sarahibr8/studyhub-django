@@ -1,8 +1,9 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import logout
 from django.http import Http404
+from django.contrib.auth.views import redirect_to_login
 from django.shortcuts import redirect, render
 
 from .forms import FeedbackForm
@@ -164,7 +165,22 @@ def signup(request):
 
 
 def login_view(request):
-    return render(request, "registration/login.html", {"theme": get_theme(request)})
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    if request.method == "POST":
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            return redirect(request.POST.get("next") or "home")
+    else:
+        form = AuthenticationForm(request)
+
+    return render(request, "registration/login.html", {
+        "theme": get_theme(request),
+        "form": form,
+        "next": request.GET.get("next", ""),
+    })
 
 
 def logout_view(request):
