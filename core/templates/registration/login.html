@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Login | StudyHub{% endblock %}
+{% block content %}
+<section class="card auth-card">
+<h1>Welcome Back</h1>
+<p>Log in to access your favorites, preferences, and feedback.</p>
+<form method="post">
+{% csrf_token %}
+{% if form.errors %}<p class="error-summary">Please check your username and password.</p>{% endif %}
+{{ form.as_p }}
+<input type="hidden" name="next" value="{{ next }}">
+<button type="submit" class="button">Login</button>
+</form>
+<p>Don't have an account? <a href="{% url 'signup' %}">Sign Up</a></p>
+</section>
+{% endblock %}
