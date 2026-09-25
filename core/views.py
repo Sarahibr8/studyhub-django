@@ -23,7 +23,10 @@ def get_theme(request):
 
 
 def get_favorite_ids(request):
-    return request.session.get("favorites", [])
+    favorites = request.session.get("favorites", [])
+    if not isinstance(favorites, list):
+        return []
+    return favorites
 
 
 def find_resource(resource_id):
@@ -63,13 +66,16 @@ def resource_detail(request, id):
 
 
 def favorites(request):
-    favorite_ids = get_favorite_ids(request)
+    favorite_ids = list(get_favorite_ids(request))
 
     if request.method == "POST":
         action = request.POST.get("action")
+        if action not in {"add", "remove"}:
+            raise Http404("Invalid favorites action")
+
         try:
             resource_id = int(request.POST.get("resource_id", ""))
-        except ValueError:
+        except (TypeError, ValueError):
             raise Http404("Resource not found")
 
         if find_resource(resource_id) is None:
@@ -81,6 +87,7 @@ def favorites(request):
             favorite_ids.remove(resource_id)
 
         request.session["favorites"] = favorite_ids
+        request.session.modified = True
         return redirect("favorites")
 
     favorite_resources = [
