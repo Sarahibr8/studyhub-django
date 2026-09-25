@@ -22,18 +22,6 @@ A Django learning resources portal built to demonstrate practical backend develo
 - Automated Django tests
 - Railway deployment with Docker
 
-## Preview
-
-<table>
-  <tr>
-    <td><img src=".github/assets/01-home.png" alt="StudyHub Home" width="100%"></td>
-    <td><img src=".github/assets/02-resource-list.png" alt="StudyHub Resource List" width="100%"></td>
-  </tr>
-  <tr>
-    <td><img src=".github/assets/03-resource-detail.png" alt="StudyHub Resource Details" width="100%"></td>
-    <td><img src=".github/assets/07-dark-theme.png" alt="StudyHub Dark Theme" width="100%"></td>
-  </tr>
-</table>
 
 ## Django Concepts
 
