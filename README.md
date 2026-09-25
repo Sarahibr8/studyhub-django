@@ -8,6 +8,16 @@ A Django learning resources portal demonstrating routing, views, templates, form
 
 ## Features
 
+- Django URL routing and view functions
+- Template inheritance with a shared base template
+- Django Forms with validation and error handling
+- Session-based favorites
+- Cookie-based light/dark theme preferences
+- Custom 404 page
+- Django authentication with Sign Up, Login, and Logout
+- Login-protected favorites, preferences, and feedback
+- Responsive UI with reusable CSS
+
 - Browse learning resources
 - View resource details with query parameters
 - Add and remove favorites using Django sessions
