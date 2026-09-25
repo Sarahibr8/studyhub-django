@@ -10,4 +10,7 @@ urlpatterns = [
     path("preferences/", views.preferences, name="preferences"),
     path("feedback/", views.feedback, name="feedback"),
     path("feedback/thanks/", views.feedback_thanks, name="feedback_thanks"),
+    path("signup/", views.signup, name="signup"),
+    path("login/", views.login_view, name="login"),
+    path("logout/", views.logout_view, name="logout"),
 ]
