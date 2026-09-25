@@ -1,3 +1,7 @@
+from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import logout
 from django.http import Http404
 from django.shortcuts import redirect, render
 
@@ -65,6 +69,7 @@ def resource_detail(request, id):
     })
 
 
+@login_required
 def favorites(request):
     favorite_ids = list(get_favorite_ids(request))
 
@@ -100,6 +105,7 @@ def favorites(request):
     })
 
 
+@login_required
 def preferences(request):
     if request.method == "POST":
         selected = request.POST.get("theme")
@@ -114,6 +120,7 @@ def preferences(request):
     })
 
 
+@login_required
 def feedback(request):
     if request.method == "POST":
         form = FeedbackForm(request.POST)
@@ -129,11 +136,41 @@ def feedback(request):
     })
 
 
+@login_required
 def feedback_thanks(request):
     return render(request, "core/feedback_thanks.html", {
         "theme": get_theme(request),
         "name": request.session.pop("feedback_name", None),
     })
+
+
+def signup(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect("home")
+    else:
+        form = UserCreationForm()
+
+    return render(request, "registration/signup.html", {
+        "theme": get_theme(request),
+        "form": form,
+    })
+
+
+def login_view(request):
+    return render(request, "registration/login.html", {"theme": get_theme(request)})
+
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+    return redirect("home")
 
 
 def custom_404(request, exception=None, invalid_path=None):
