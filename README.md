@@ -2,10 +2,6 @@
 
 A Django learning resources portal built to demonstrate practical backend development with Django, including routing, views, templates, forms, sessions, cookies, authentication, validation, and responsive UI.
 
-## Live Demo
-
-🌐 **[StudyHub Live Demo](https://studyhub-production-6f03.up.railway.app)**
-
 ## Highlights
 
 - Django URL routing and function-based views
@@ -18,10 +14,9 @@ A Django learning resources portal built to demonstrate practical backend develo
 - CSRF-protected POST forms
 - Custom 404 page
 - Responsive UI with CSS Grid and Flexbox
-- WhiteNoise static-file serving for deployment
+- WhiteNoise static-file serving
 - Automated Django tests
-- Railway deployment with Docker
-
+- Docker support
 
 ## Django Concepts
 
@@ -67,7 +62,6 @@ A Django learning resources portal built to demonstrate practical backend develo
 - WhiteNoise
 - Gunicorn
 - Docker
-- Railway
 
 ## Testing
 
@@ -81,9 +75,7 @@ The project includes automated tests covering:
 - User registration and login
 - Login protection for private pages
 
-Tests run automatically during the Docker image build.
-
-Run them locally with:
+Run tests locally with:
 
 ```bash
 python manage.py test
