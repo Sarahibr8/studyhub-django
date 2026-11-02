@@ -5,7 +5,7 @@ from django.test import TestCase
 class StudyHubTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username="testuser", password="SafePassword123!")
-        self.client.login(username="testuser", password="SafePassword123!")
+        self.client.force_login(self.user)
 
     def test_home_and_resources_pages(self):
         self.assertEqual(self.client.get("/").status_code, 200)
